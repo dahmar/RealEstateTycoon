@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Gley.Localization;
 
 namespace RealEstateTycoon
 {
@@ -97,7 +98,9 @@ namespace RealEstateTycoon
 						//deduct the building's price from our availabe money										
 						globalGameController.userCurrentBalance -= parentObject.GetComponent<HouseController>().purchasePrice;
 
-						notifyText.GetComponent<textFx>().publicText = "Purchased at:  $";
+						//TODO translate
+						//notifyText.GetComponent<textFx>().publicText = "Purchased at:  $";
+						notifyText.GetComponent<textFx>().publicText = Gley.Localization.API.GetText(WordIDs.purchased_at) + "  $";
 						notifyText.GetComponent<textFx>().publicPrice = parentObject.GetComponent<HouseController>().purchasePrice.ToString();
 
 						tapEnabled = false;

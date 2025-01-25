@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Gley.Localization;
 
 namespace RealEstateTycoon
 {
@@ -264,13 +265,17 @@ namespace RealEstateTycoon
 			if (benefit >= 0)
 			{
 				notifyText.GetComponent<Renderer>().material.mainTexture = notificationBarTextures[0];
-				notifyText.GetComponent<textFx>().publicText = "Profit:  $";
+				//TODO translate
+				//notifyText.GetComponent<textFx>().publicText = "Profit:  $";
+				notifyText.GetComponent<textFx>().publicText = Gley.Localization.API.GetText(WordIDs.profit) + "  $";
 				playSfx(sellWithProfitFx);
 			}
 			else
 			{
 				notifyText.GetComponent<Renderer>().material.mainTexture = notificationBarTextures[1];
-				notifyText.GetComponent<textFx>().publicText = "Loss:  $";
+				//TODO translate
+				//notifyText.GetComponent<textFx>().publicText = "Loss:  $";
+				notifyText.GetComponent<textFx>().publicText = Gley.Localization.API.GetText(WordIDs.loss) + "  $";
 				playSfx(sellWithLossFx);
 			}
 

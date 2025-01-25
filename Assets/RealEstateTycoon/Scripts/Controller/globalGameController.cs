@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using Gley.Localization;
 
 namespace RealEstateTycoon
 {
@@ -69,6 +70,7 @@ namespace RealEstateTycoon
 		public Text timeText;
 		public GameObject endGamePlane;
 		public Image endGameStatus;
+		public Text endGameText;
 		public Sprite[] endGameTextures;
 
 		//game controller spawn new building at the position of these dummy helpers
@@ -201,6 +203,7 @@ namespace RealEstateTycoon
 				gameIsFinished = true;                      //announce the new status to other classes
 				endGamePlane.SetActive(true);               //show the endGame plane
 				endGameStatus.sprite = endGameTextures[1];  //show the correct texture for result
+				endGameText.text = Gley.Localization.API.GetText(WordIDs.you_have_lost);
 				playNormalSfx(timeUpSfx);
 				yield return new WaitForSeconds(2.0f);
 				playNormalSfx(loseSfx);
@@ -212,6 +215,7 @@ namespace RealEstateTycoon
 				gameIsFinished = true;
 				endGamePlane.SetActive(true);
 				endGameStatus.sprite = endGameTextures[0];
+				endGameText.text = Gley.Localization.API.GetText(WordIDs.you_win);
 				playNormalSfx(winSfx);
 
 				//save the best time in TimeTrial mode (saves the passed time)
@@ -227,6 +231,7 @@ namespace RealEstateTycoon
 				gameIsFinished = true;
 				endGamePlane.SetActive(true);
 				endGameStatus.sprite = endGameTextures[0];
+				endGameText.text = Gley.Localization.API.GetText(WordIDs.you_win);
 				playNormalSfx(winSfx);
 			}
 			else if (gameMode == "CAREER" && gameTime <= 0 && userCurrentBalance < requiredBalance)
@@ -235,6 +240,7 @@ namespace RealEstateTycoon
 				gameIsFinished = true;
 				endGamePlane.SetActive(true);
 				endGameStatus.sprite = endGameTextures[1];
+				endGameText.text = Gley.Localization.API.GetText(WordIDs.you_have_lost);
 				playNormalSfx(timeUpSfx);
 				yield return new WaitForSeconds(2.0f);
 				playNormalSfx(loseSfx);
